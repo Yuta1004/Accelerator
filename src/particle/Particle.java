@@ -6,11 +6,11 @@ public class Particle {
     private final double SM;    // 粒子の静止質量
     private final double DT;    // 時間進み幅
 
-    private Vector3 Ef;         // 空間中の電界 (E)
-    private Vector3 Bmfd;       // 空間中の磁束密度 (B)
-    private Vector3 pos;        // 粒子の位置
-    private Vector3 velocity;   // 粒子の速度
-    private Vector3 meshN;      // 各軸方向の空間メッシュ数
+    private       Vector3 Ef;         // 空間中の電界 (E)
+    private       Vector3 Bmfd;       // 空間中の磁束密度 (B)
+    private       Vector3 pos;        // 粒子の位置
+    private       Vector3 velocity;   // 粒子の速度
+    private final Vector3 meshN;      // 各軸方向の空間メッシュ数
 
     private boolean isEnableP = true;   // 計算が有効な粒子かどうか
 
