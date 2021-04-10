@@ -1,4 +1,4 @@
-package particle;
+package src.particle;
 
 /**
  * 定数を定義するデータクラス
