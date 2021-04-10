@@ -1,4 +1,4 @@
-package src.particle;
+package particle;
 
 public class Particle {
 
