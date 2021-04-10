@@ -10,4 +10,8 @@ public class Vector3 {
         this.x = z;
     }
 
+    public void print() {
+        System.out.println(this.getClass().getSimpleName() + ": (" + x + ", " + y + ", " + z + ") ");
+    }
+
 }
