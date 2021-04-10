@@ -7,7 +7,7 @@ public class Vector3 {
     public Vector3(double x, double y, double z) {
         this.x = x;
         this.y = y;
-        this.x = z;
+        this.z = z;
     }
 
     public void print() {

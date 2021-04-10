@@ -123,7 +123,7 @@ public class Particle {
         // 粒子が有効領域から外れた場合、今後の計算を無効にする
         isEnableP &= !(x <= 0.0 || x >= meshN.x-1);
         isEnableP &= !(y <= 0.0 || y >= meshN.y-1);
-        isEnableP &= !(x <= 0.0 || z >= meshN.z-1);
+        isEnableP &= !(z <= 0.0 || z >= meshN.z-1);
         if(!isEnableP) return;
 
         double fac = (Q/SM)*DT*0.5*Const.ZMOVE;                         // 電界から受けるローレンツ力の係数
