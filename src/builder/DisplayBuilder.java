@@ -2,13 +2,13 @@ package builder;
 
 import java.util.ArrayList;
 
-import javafx.scene.Scene;
+import javafx.scene.SubScene;
 
 import particle.Particle;
 
 public interface DisplayBuilder {
 
-    public Scene getScene();
+    public SubScene getScene();
     public void update(ArrayList<Particle> particles);
 
 }
