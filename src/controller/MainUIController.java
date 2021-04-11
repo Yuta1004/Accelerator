@@ -75,9 +75,13 @@ public class MainUIController implements Initializable {
         playBtn.setOnAction(event -> {
             if(playBtn.getText().equals("再生")) {
                 playBtn.setText("停止");
+                addParticleBtn.setDisable(true);
+                removeParticleBtn.setDisable(true);
                 tl.play();
             } else {
                 playBtn.setText("再生");
+                addParticleBtn.setDisable(false);
+                removeParticleBtn.setDisable(false);
                 tl.stop();
             }
         });
@@ -87,6 +91,8 @@ public class MainUIController implements Initializable {
             playBtn.setText("再生");
             time.setText("0.0000000000");
             timeE.setText("0.00E-11");
+            addParticleBtn.setDisable(false);
+            removeParticleBtn.setDisable(false);
             pmanager = new ParticleManager(1.0, 11, 11, 11);
             particleList.getItems().clear();
             dbuilder.reset();
@@ -97,6 +103,8 @@ public class MainUIController implements Initializable {
             playBtn.setText("再生");
             time.setText("0.0000000000");
             timeE.setText("0.00E-11");
+            addParticleBtn.setDisable(false);
+            removeParticleBtn.setDisable(false);
             pmanager.reset();
             dbuilder.reset();
             dbuilder.update(pmanager.getParticles());
