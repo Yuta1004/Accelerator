@@ -37,7 +37,7 @@ public class MainUIController implements Initializable {
     // UI部品
     @FXML private AnchorPane displayPane;
     @FXML private Label time, timeE;
-    @FXML private Tab cameraTab3D;
+    @FXML private Tab cameraTab2D, cameraTab3D;
     @FXML private TabPane cameraTab;
     @FXML private Slider cameraX, cameraY, cameraZ, cameraRH, cameraRV;
     @FXML private Button playBtn, initBtn, resetBtn, nextBtn, addParticleBtn, removeParticleBtn;
@@ -196,10 +196,26 @@ public class MainUIController implements Initializable {
             changeDBuilder(new Builder3D());
             dbuilder.update(pmanager);
             updateCamera3D.run();
+            cameraTab.getSelectionModel().select(cameraTab3D);
         });
-        view2DXY.setOnAction(event -> { changeDBuilder(new Builder2DXY()); dbuilder.update(pmanager); });
-        view2DYZ.setOnAction(event -> { changeDBuilder(new Builder2DYZ()); dbuilder.update(pmanager); });
-        view2DZX.setOnAction(event -> { changeDBuilder(new Builder2DZX()); dbuilder.update(pmanager); });
+
+        view2DXY.setOnAction(event -> {
+            changeDBuilder(new Builder2DXY());
+            dbuilder.update(pmanager);
+            cameraTab.getSelectionModel().select(cameraTab2D);
+        });
+
+        view2DYZ.setOnAction(event -> {
+            changeDBuilder(new Builder2DYZ());
+            dbuilder.update(pmanager);
+            cameraTab.getSelectionModel().select(cameraTab2D);
+        });
+
+        view2DZX.setOnAction(event -> {
+            changeDBuilder(new Builder2DZX());
+            dbuilder.update(pmanager);
+            cameraTab.getSelectionModel().select(cameraTab2D);
+        });
     }
 
     /**
