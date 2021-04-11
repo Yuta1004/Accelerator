@@ -88,6 +88,7 @@ public class MainUIController implements Initializable {
             time.setText("0.0000000000");
             timeE.setText("0.00E-11");
             pmanager = new ParticleManager(1.0, 11, 11, 11);
+            particleList.getItems().clear();
             dbuilder.reset();
         });
 
