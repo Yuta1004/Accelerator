@@ -11,6 +11,7 @@ import particle.ParticleManager;
 
 public abstract class Builder2D implements DisplayBuilder {
 
+    private SubScene scene;
     private ScatterChart<Number, Number> chart;
     protected NumberAxis hAxis, vAxis;
     protected ObservableList<XYChart.Series<Number, Number>> data;
@@ -38,7 +39,10 @@ public abstract class Builder2D implements DisplayBuilder {
      * @return SubScene
      */
     public SubScene getScene() {
-        return new SubScene(chart, 1026, 748);
+        if(scene == null) {
+            scene = new SubScene(chart, 1026, 748);
+        }
+        return scene;
     }
 
     /**

@@ -21,6 +21,7 @@ import particle.ParticleManager;
 public class Builder3D implements DisplayBuilder {
 
     private Group root;
+    private SubScene scene;
     private PerspectiveCamera cam;
     private ArrayList<Sphere> newerAddedModels;
 
@@ -45,8 +46,10 @@ public class Builder3D implements DisplayBuilder {
      * @return SubScene
      */
     public SubScene getScene() {
-        SubScene scene = new SubScene(root, 1026, 748);
-        scene.setCamera(cam);
+        if(scene == null) {
+            scene = new SubScene(root, 1026, 748);
+            scene.setCamera(cam);
+        }
         return scene;
     }
 
