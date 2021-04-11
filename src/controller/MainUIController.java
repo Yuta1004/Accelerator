@@ -17,6 +17,7 @@ import javafx.util.Duration;
 
 import builder.DisplayBuilder;
 import builder.Builder3D;
+import particle.Vector3;
 import particle.ParticleManager;
 
 public class MainUIController implements Initializable {
@@ -31,6 +32,10 @@ public class MainUIController implements Initializable {
     private Timeline tl;
     private DisplayBuilder dbuilder;
     private ParticleManager pmanager;
+
+    // カメラ操作用
+    private Vector3 oldMousePos;
+    private double sensitivity = 0.01;
 
     /**
      * UIの初期化を行う
@@ -76,6 +81,16 @@ public class MainUIController implements Initializable {
         cameraZ.valueProperty().addListener((__, oldV, newV) -> updateCamera3D.run());
         cameraRH.valueProperty().addListener((__, oldV, newV) -> updateCamera3D.run());
         cameraRV.valueProperty().addListener((__, oldV, newV) -> updateCamera3D.run());
+
+        // 3Dカメラ(マウス操作)
+        displayPane.setOnMousePressed((event) -> oldMousePos = new Vector3(event.getX(), event.getY(), 0.0));
+        displayPane.setOnMouseDragged((event) -> {
+            double diffX = -(event.getX()-oldMousePos.x) * sensitivity;
+            double diffY =  (event.getY()-oldMousePos.y) * sensitivity;
+            cameraRH.setValue((cameraRH.getValue()+diffX+360) % 360);
+            cameraRV.setValue((cameraRV.getValue()+diffY+360) % 360);
+            updateCamera3D.run();
+        });
     }
 
     /**
