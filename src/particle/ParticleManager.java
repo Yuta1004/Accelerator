@@ -124,6 +124,21 @@ public class ParticleManager {
     }
 
     /**
+     * 管理対象にある粒子のうち、指定されたIDのものを削除する
+     *
+     * @return boolean 削除結果(指定IDが存在するときtrue)
+     */
+    public boolean remove(int id) {
+        if(particles.get(id) == null) {
+            return false;
+        }
+        particles.remove(id);
+        initialPositions.remove(id);
+        initialVelocities.remove(id);
+        return true;
+    }
+
+    /**
      * 経過時間を返す
      */
     public double getTime() {
