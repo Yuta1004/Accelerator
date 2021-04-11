@@ -52,12 +52,12 @@ public abstract class Builder2D implements DisplayBuilder {
         hAxis.setAutoRanging(false);
         hAxis.setTickUnit(0.1);
         hAxis.setLowerBound(horizontalS);
-        hAxis.setUpperBound(horizontalF);
+        hAxis.setUpperBound(Math.max(horizontalS, horizontalF));
 
         vAxis.setAutoRanging(false);
         vAxis.setTickUnit(0.1);
         vAxis.setLowerBound(verticalS);
-        vAxis.setUpperBound(verticalF);
+        vAxis.setUpperBound(Math.max(verticalS, verticalF));
     }
 
     /**

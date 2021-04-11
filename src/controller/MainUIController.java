@@ -41,7 +41,7 @@ public class MainUIController implements Initializable {
     @FXML private TabPane cameraTab;
     @FXML private Slider cameraX, cameraY, cameraZ, cameraRH, cameraRV;
     @FXML private Button playBtn, initBtn, resetBtn, nextBtn, addParticleBtn, removeParticleBtn;
-    @FXML private TextField ex, ey, ez, bx, by, bz;
+    @FXML private TextField ex, ey, ez, bx, by, bz, verticalS, verticalF, horizontalS, horizontalF;
     @FXML private ListView<ParticleStatData> particleList;
     @FXML private MenuItem view2DXY, view2DYZ, view2DZX, view3D;
 
@@ -161,6 +161,21 @@ public class MainUIController implements Initializable {
         cameraTab.getStyleClass().add("floating");
         cameraTab.getSelectionModel().select(cameraTab3D);
 
+        /* 2Dカメラ(視点) */
+        Runnable updateCamera2D = () -> {
+            double verticalSVal = readTextFieldAsDouble(verticalS, 0.0);
+            double verticalFVal = readTextFieldAsDouble(verticalF, verticalSVal+1.0);
+            double horizontalSVal = readTextFieldAsDouble(horizontalS, 0.0);
+            double horizontalFVal = readTextFieldAsDouble(horizontalF, horizontalSVal+1.0);
+            dbuilder.set2DCamera(horizontalSVal, horizontalFVal, verticalSVal, verticalFVal);
+            dbuilder.reset();
+            dbuilder.update(pmanager);
+        };
+        verticalS.textProperty().addListener((__, oldV, newV) -> updateCamera2D.run());
+        verticalF.textProperty().addListener((__, oldV, newV) -> updateCamera2D.run());
+        horizontalS.textProperty().addListener((__, oldV, newV) -> updateCamera2D.run());
+        horizontalF.textProperty().addListener((__, oldV, newV) -> updateCamera2D.run());
+
         /* 3Dカメラ */
         Runnable updateCamera3D = () -> {
             double x = cameraX.getValue();
@@ -197,18 +212,21 @@ public class MainUIController implements Initializable {
         view2DXY.setOnAction(event -> {
             changeDBuilder(new Builder2DXY());
             dbuilder.update(pmanager);
+            updateCamera2D.run();
             cameraTab.getSelectionModel().select(cameraTab2D);
         });
 
         view2DYZ.setOnAction(event -> {
             changeDBuilder(new Builder2DYZ());
             dbuilder.update(pmanager);
+            updateCamera2D.run();
             cameraTab.getSelectionModel().select(cameraTab2D);
         });
 
         view2DZX.setOnAction(event -> {
             changeDBuilder(new Builder2DZX());
             dbuilder.update(pmanager);
+            updateCamera2D.run();
             cameraTab.getSelectionModel().select(cameraTab2D);
         });
     }
