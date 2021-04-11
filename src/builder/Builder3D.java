@@ -50,8 +50,7 @@ public class Builder3D implements DisplayBuilder {
         cam.setFieldOfView(45.5);
         cam.setNearClip(1.0);
         cam.setFarClip(1000000.0);
-        cam.getTransforms().add(new Rotate(-90, new Point3D(1, 0, 0)));
-        cam.getTransforms().add(new Translate(0.0, 0.0, -20.0));
+        set3DCamera(30, 0, 0, 45, 30);
     };
 
     /**
@@ -74,7 +73,7 @@ public class Builder3D implements DisplayBuilder {
             new Rotate(-90.0, new Point3D(1, 0, 0)),    // z軸補正
             new Rotate(-rh-90, new Point3D(0, 1, 0)),   // H
             new Rotate(-rv, new Point3D(1, 0, 0)),      // V
-            new Translate(x, y, z)                      // 座標
+            new Translate(y, z, -x)                      // 座標
         );
     }
 
