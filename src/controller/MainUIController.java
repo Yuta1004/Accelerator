@@ -96,8 +96,9 @@ public class MainUIController implements Initializable {
             playBtn.setText("再生");
             time.setText("0.0000000000");
             timeE.setText("0.00E-11");
-            // pmanager.reset();
+            pmanager.reset();
             dbuilder.reset();
+            dbuilder.update(pmanager.getParticles());
         });
 
         nextBtn.setOnAction(event -> {

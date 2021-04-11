@@ -112,6 +112,18 @@ public class ParticleManager {
     }
 
     /**
+     * 管理する全ての粒子の状態を初期状態に戻す
+     */
+    public void reset() {
+        for(int id : particles.keySet()) {
+            Vector3 pos = initialPositions.get(id);
+            Vector3 velocity = initialVelocities.get(id);
+            particles.get(id).setPos(pos.x, pos.y, pos.z);
+            particles.get(id).setVelocity(velocity.x, velocity.y, velocity.z);
+        }
+    }
+
+    /**
      * 経過時間を返す
      */
     public double getTime() {
