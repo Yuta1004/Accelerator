@@ -10,14 +10,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox fx:id="root" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<HBox fx:id="root" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <StackPane prefWidth="50.0">
          <children>
-            <Circle fx:id="circle" fill="#1f93ffb1" radius="22.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="circle" fill="#1f93ffb1" radius="18.0" stroke="BLACK" strokeType="INSIDE" />
             <Label fx:id="name" text="電子">
                <font>
-                  <Font size="19.0" />
+                  <Font size="17.0" />
                </font>
             </Label>
          </children>

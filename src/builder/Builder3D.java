@@ -44,7 +44,7 @@ public class Builder3D implements DisplayBuilder {
      * @return SubScene
      */
     public SubScene getScene() {
-        SubScene scene = new SubScene(root, 960, 720);
+        SubScene scene = new SubScene(root, 1026, 748);
         scene.setCamera(cam);
         return scene;
     }
