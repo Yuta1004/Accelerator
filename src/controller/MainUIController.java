@@ -43,7 +43,7 @@ public class MainUIController implements Initializable {
     @FXML private Button playBtn, initBtn, resetBtn, nextBtn, addParticleBtn, removeParticleBtn;
     @FXML private TextField ex, ey, ez, bx, by, bz, verticalS, verticalF, horizontalS, horizontalF;
     @FXML private ListView<ParticleStatData> particleList;
-    @FXML private MenuItem view2DXY, view2DYZ, view2DZX, view3D;
+    @FXML private MenuItem view2DXY, view2DYZ, view2DZX, view3D, openCredit;
 
     // 描画用
     private Timeline tl;
@@ -202,6 +202,8 @@ public class MainUIController implements Initializable {
         });
 
         /* メニュー */
+        openCredit.setOnAction(event -> genStage("Credit", "/fxml/Credit.fxml", null).showAndWait());
+
         view3D.setOnAction(event -> {
             changeDBuilder(new Builder3D());
             dbuilder.update(pmanager);

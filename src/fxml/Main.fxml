@@ -44,6 +44,11 @@
                   <MenuItem mnemonicParsing="false" text="設定画面を開く" />
                </items>
             </Menu>
+            <Menu mnemonicParsing="false" text="その他">
+               <items>
+                  <MenuItem fx:id="openCredit" mnemonicParsing="false" text="クレジット" />
+               </items>
+            </Menu>
       </menus>
     </MenuBar>
       <SplitPane dividerPositions="0.75" prefHeight="748.0">
