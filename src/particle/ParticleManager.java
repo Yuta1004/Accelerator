@@ -122,7 +122,7 @@ public class ParticleManager {
      * 管理下にある粒子を返す
      */
     public Particle[] getParticles() {
-        return (Particle[])(particles.values().toArray());
+        return particles.values().toArray(new Particle[particles.size()]);
     }
 
 }
