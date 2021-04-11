@@ -210,16 +210,6 @@
                            <content>
                               <VBox alignment="BOTTOM_LEFT">
                                  <children>
-                                    <HBox alignment="BOTTOM_LEFT" spacing="10.0">
-                                       <children>
-                                          <Label text="100, 100, 100, 40°">
-                                             <font>
-                                                <Font size="15.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </HBox>
-                                    <Pane prefHeight="20.0" />
                                     <HBox alignment="CENTER" spacing="15.0">
                                        <children>
                                           <Label text="X">
@@ -227,7 +217,7 @@
                                                 <Font size="20.0" />
                                              </font>
                                           </Label>
-                                          <Slider blockIncrement="1.0" min="-100.0" prefWidth="250.0" showTickLabels="true" showTickMarks="true" />
+                                          <Slider fx:id="cameraX" blockIncrement="1.0" min="-100.0" prefWidth="250.0" showTickLabels="true" showTickMarks="true" value="30.0" />
                                        </children>
                                        <padding>
                                           <Insets left="15.0" />
@@ -240,7 +230,7 @@
                                                 <Font size="20.0" />
                                              </font>
                                           </Label>
-                                          <Slider blockIncrement="1.0" min="-100.0" prefWidth="250.0" showTickLabels="true" showTickMarks="true" />
+                                          <Slider fx:id="cameraY" blockIncrement="1.0" min="-100.0" prefWidth="250.0" showTickLabels="true" showTickMarks="true" />
                                        </children>
                                        <padding>
                                           <Insets left="15.0" />
@@ -253,24 +243,28 @@
                                                 <Font size="20.0" />
                                              </font>
                                           </Label>
-                                          <Slider blockIncrement="1.0" min="-100.0" prefWidth="250.0" showTickLabels="true" showTickMarks="true" />
+                                          <Slider fx:id="cameraZ" blockIncrement="1.0" min="-100.0" prefWidth="250.0" showTickLabels="true" showTickMarks="true" />
                                        </children>
                                        <padding>
                                           <Insets left="15.0" />
                                        </padding>
                                     </HBox>
-                                    <HBox alignment="TOP_CENTER" spacing="15.0">
+                                    <HBox alignment="TOP_CENTER" spacing="5.0">
                                        <children>
-                                          <Label text="R">
+                                          <Label text="RH">
                                              <font>
                                                 <Font size="20.0" />
                                              </font>
                                           </Label>
-                                          <Slider blockIncrement="1.0" max="360.0" prefWidth="250.0" showTickLabels="true" showTickMarks="true" />
+                                          <Slider fx:id="cameraRH" blockIncrement="1.0" max="360.0" prefWidth="105.0" showTickLabels="true" showTickMarks="true" value="45.0" />
+                                          <Separator orientation="VERTICAL" />
+                                          <Label text="RV">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Slider fx:id="cameraRV" blockIncrement="1.0" max="360.0" prefWidth="105.0" showTickLabels="true" showTickMarks="true" value="30.0" />
                                        </children>
-                                       <padding>
-                                          <Insets left="15.0" />
-                                       </padding>
                                     </HBox>
                                  </children>
                                  <padding>
