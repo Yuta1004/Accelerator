@@ -81,6 +81,7 @@ public class MainUIController implements Initializable {
                 tl.stop();
             }
         });
+
         initBtn.setOnAction(event -> {
             tl.stop();
             playBtn.setText("再生");
@@ -89,6 +90,7 @@ public class MainUIController implements Initializable {
             pmanager = new ParticleManager(1.0, 11, 11, 11);
             dbuilder.reset();
         });
+
         resetBtn.setOnAction(event -> {
             tl.stop();
             playBtn.setText("再生");
@@ -97,10 +99,12 @@ public class MainUIController implements Initializable {
             // pmanager.reset();
             dbuilder.reset();
         });
+
         nextBtn.setOnAction(event -> {
             pmanager.update();
             dbuilder.update(pmanager.getParticles());
         });
+
         addParticleBtn.setOnAction(event -> {
             AddParticleUIController cont = new AddParticleUIController();
             genStage("AddParticle", "/fxml/AddParticle.fxml", cont).showAndWait();
