@@ -124,6 +124,16 @@ public class MainUIController implements Initializable {
             }
         });
 
+        removeParticleBtn.setOnAction(event -> {
+            ParticleStatData data = particleList.getSelectionModel().getSelectedItem();
+            if(data != null) {
+                pmanager.remove(data.id);
+                particleList.getItems().remove(particleList.getSelectionModel().getSelectedIndex());
+                dbuilder.reset();
+                dbuilder.update(pmanager.getParticles());
+            }
+        });
+
         // 粒子一覧を表示するListView
         particleList.setCellFactory(__ -> new ParticleListCell());
 
