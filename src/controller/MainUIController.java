@@ -9,6 +9,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.SubScene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.Slider;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.animation.Timeline;
 import javafx.animation.KeyFrame;
 import javafx.util.Duration;
@@ -21,6 +23,8 @@ public class MainUIController implements Initializable {
 
     // UI部品
     @FXML private AnchorPane displayPane;
+    @FXML private Tab cameraTab3D;
+    @FXML private TabPane cameraTab;
     @FXML private Slider cameraX, cameraY, cameraZ, cameraRH, cameraRV;
 
     // 描画用
@@ -54,6 +58,10 @@ public class MainUIController implements Initializable {
      * UIのセットアップを行う
      */
     private void setupUIComponets() {
+        // 2D/3Dカメラ操作タブ
+        cameraTab.getStyleClass().add("floating");
+        cameraTab.getSelectionModel().select(cameraTab3D);
+
         // 3Dカメラ
         Runnable updateCamera3D = () -> {
             double x = cameraX.getValue();
