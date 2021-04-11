@@ -85,21 +85,16 @@ public class MainUIController implements Initializable {
             playBtn.setText(isPlaying ? "再生" : "停止");
             addParticleBtn.setDisable(!isPlaying);
             removeParticleBtn.setDisable(!isPlaying);
-
-            // 電場, 磁束密度の入力値を反映させる
-            double inpValues[]= {0.0, 0.0, 0,0, 0.0, 0.0, 0.0};
-            TextField inpComponents[] = {ex, ey, ez, bx, by, bz};
-            for(int idx = 0; idx < 6; ++ idx) {
-                try {
-                    inpValues[idx] = Double.parseDouble(inpComponents[idx].getText());
-                } catch (Exception e) {
-                    inpValues[idx] = 0.0;
-                    inpComponents[idx].setText("0.0");
-                }
-            }
-            pmanager.setElectricField(inpValues[0], inpValues[1], inpValues[2]);
-            pmanager.setMagneticFluxDensity(inpValues[3], inpValues[4], inpValues[5]);
-
+            pmanager.setElectricField(
+                readTextFieldAsDouble(ex, 0.0),
+                readTextFieldAsDouble(ey, 0.0),
+                readTextFieldAsDouble(ez, 0.0)
+            );
+            pmanager.setMagneticFluxDensity(
+                readTextFieldAsDouble(bx, 0.0),
+                readTextFieldAsDouble(by, 0.0),
+                readTextFieldAsDouble(bz, 0.0)
+            );
             if(isPlaying) tl.stop(); else tl.play();
         });
 
@@ -260,6 +255,22 @@ public class MainUIController implements Initializable {
         stage.setScene(scene);
         stage.setTitle("Electrody - "+title);
         return stage;
+    }
+
+    /**
+     * TextFieldの値を読みつつ、有効な入力でなかった場合には修正を行う
+     *
+     * @param target 読み取り対象のTextField
+     * @param fixValue 修正値
+     * @return double 読み取った値、修正が行われた場合にはfixValue
+     */
+    private double readTextFieldAsDouble(TextField target, double fixValue) {
+        try {
+            return Double.parseDouble(target.getText());
+        } catch (Exception e) {
+            target.setText(""+fixValue);
+            return fixValue;
+        }
     }
 
 }
