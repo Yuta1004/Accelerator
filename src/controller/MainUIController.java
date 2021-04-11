@@ -112,7 +112,7 @@ public class MainUIController implements Initializable {
                     id = pmanager.addProton(cont.x, cont.y, cont.z, cont.vx, cont.vy, cont.vz);
                 }
                 particleList.getItems().add(
-                    new ParticleStatData(id, cont.setElectron, true, new Vector3(cont.x, cont.y, cont.z), new Vector3(cont.vx, cont.vy, cont.vz))
+                    new ParticleStatData(id, cont.setElectron, new Vector3(cont.x, cont.y, cont.z), new Vector3(cont.vx, cont.vy, cont.vz))
                 );
                 dbuilder.update(pmanager.getParticles());
             }

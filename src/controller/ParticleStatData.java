@@ -8,7 +8,7 @@ import particle.Vector3;
 public class ParticleStatData {
 
     public final int id;
-    public final boolean isElectron, isEnableP;
+    public final boolean isElectron;
     public final Vector3 initialPosition;
     public final Vector3 initialVelocity;
 
@@ -20,10 +20,9 @@ public class ParticleStatData {
      * @param initialPosition 初期座標
      * @param initialVelocity 初速度
      */
-    public ParticleStatData(int id, boolean isElectron, boolean isEnableP, Vector3 initialPosition, Vector3 initialVelocity) {
+    public ParticleStatData(int id, boolean isElectron, Vector3 initialPosition, Vector3 initialVelocity) {
         this.id = id;
         this.isElectron = isElectron;
-        this.isEnableP = isEnableP;
         this.initialPosition = initialPosition;
         this.initialVelocity = initialVelocity;
     }

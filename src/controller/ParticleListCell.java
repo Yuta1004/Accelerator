@@ -17,7 +17,7 @@ public class ParticleListCell extends ListCell<ParticleStatData> {
 
     @FXML private HBox root;
     @FXML private Circle circle;
-    @FXML private Label initialPosLabel, initialVeloLabel, isEnablePLabel;
+    @FXML private Label idLabel, initialPosLabel, initialVeloLabel;
 
     @Override
     public void updateItem(ParticleStatData data, boolean empty) {
@@ -47,9 +47,9 @@ public class ParticleListCell extends ListCell<ParticleStatData> {
 
         // ラベル指定
         Vector3 pos = data.initialPosition, velocity = data.initialVelocity;
+        idLabel.setText(String.format("%02d", data.id));
         initialPosLabel.setText(String.format("(%.2f, %.2f, %.2f)", pos.x, pos.y, pos.z));
         initialVeloLabel.setText(String.format("(%.2f, %.2f, %.2f)", velocity.x, velocity.y, velocity.z));
-        isEnablePLabel.setText(data.isEnableP ? "有効" : "無効");
 
         setText(null);
         setGraphic(root);

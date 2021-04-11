@@ -10,7 +10,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <HBox fx:id="root" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <StackPane prefWidth="50.0">
@@ -32,12 +31,12 @@
          <children>
             <VBox alignment="CENTER_LEFT">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="状態">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ID">
                      <font>
                         <Font size="10.0" />
                      </font>
                   </Text>
-                  <Label fx:id="isEnablePLabel" text="有効">
+                  <Label fx:id="idLabel" prefWidth="25.0" text="01" textAlignment="RIGHT">
                      <font>
                         <Font size="20.0" />
                      </font>
