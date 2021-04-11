@@ -287,12 +287,12 @@
                               </Text>
                               <HBox alignment="CENTER_RIGHT" spacing="10.0" GridPane.columnIndex="1">
                                  <children>
-                                    <Button mnemonicParsing="false" text="+">
+                                    <Button fx:id="addParticleBtn" mnemonicParsing="false" text="+">
                                        <font>
                                           <Font size="11.0" />
                                        </font>
                                     </Button>
-                                    <Button mnemonicParsing="false" text="-">
+                                    <Button fx:id="removeParticleBtn" mnemonicParsing="false" text="-">
                                        <font>
                                           <Font size="11.0" />
                                        </font>

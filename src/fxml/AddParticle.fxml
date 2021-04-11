@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="320.0" prefWidth="420.0" spacing="10.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox>
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="粒子の追加">
+               <font>
+                  <Font size="35.0" />
+               </font>
+            </Text>
+            <Label fx:id="errorMsg" text="全ての入力欄に適数値を入力してください" textFill="RED" underline="true" visible="false" />
+         </children>
+      </VBox>
+      <Separator prefWidth="200.0">
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin>
+      </Separator>
+      <GridPane hgap="20.0" prefHeight="120.0" prefWidth="400.0" vgap="20.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="116.0" minWidth="10.0" prefWidth="47.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="201.0" minWidth="10.0" prefWidth="193.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="32.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="種類">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Text>
+            <HBox alignment="CENTER" spacing="50.0" GridPane.columnIndex="1">
+               <children>
+                  <RadioButton fx:id="electron" mnemonicParsing="false" selected="true" text="電子">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="type" />
+                     </toggleGroup>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="proton" mnemonicParsing="false" text="陽子" toggleGroup="$type">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </RadioButton>
+               </children>
+            </HBox>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="初期座標" GridPane.rowIndex="1">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Text>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="(">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="inpX" prefWidth="70.0" promptText="X" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text=",">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="inpY" prefWidth="70.0" promptText="Y" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text=",">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="inpZ" prefWidth="70.0" promptText="Z" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text=")">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="初速度" GridPane.rowIndex="2">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Text>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="(">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="inpVx" prefWidth="70.0" promptText="X" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text=",">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="inpVy" prefWidth="70.0" promptText="Y" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text=",">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="inpVz" prefWidth="70.0" promptText="Z" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text=")">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
+         </children>
+      </GridPane>
+      <HBox alignment="CENTER">
+         <children>
+            <Button fx:id="done" mnemonicParsing="false" prefWidth="300.0" text="追加">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+         </children>
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+   </padding>
+</VBox>

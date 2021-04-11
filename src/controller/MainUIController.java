@@ -5,7 +5,11 @@ import java.util.ResourceBundle;
 import java.lang.Runnable;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.stage.Stage;
+import javafx.stage.Modality;
+import javafx.scene.Scene;
 import javafx.scene.SubScene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.Slider;
@@ -17,7 +21,6 @@ import javafx.scene.control.ListView;
 import javafx.animation.Timeline;
 import javafx.animation.KeyFrame;
 import javafx.util.Duration;
-
 import builder.DisplayBuilder;
 import builder.Builder3D;
 import particle.Vector3;
@@ -31,13 +34,14 @@ public class MainUIController implements Initializable {
     @FXML private Tab cameraTab3D;
     @FXML private TabPane cameraTab;
     @FXML private Slider cameraX, cameraY, cameraZ, cameraRH, cameraRV;
-    @FXML private Button playBtn, initBtn, resetBtn, nextBtn;
+    @FXML private Button playBtn, initBtn, resetBtn, nextBtn, addParticleBtn, removeParticleBtn;
     @FXML private ListView<ParticleStatData> particleList;
 
     // 描画用
     private Timeline tl;
     private DisplayBuilder dbuilder;
     private ParticleManager pmanager;
+    private ResourceBundle resource;
 
     // カメラ操作用
     private Vector3 oldMousePos;
@@ -48,12 +52,10 @@ public class MainUIController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resource) {
+        this.resource = resource;
+        setupUIComponets();
         changeDBuilder(new Builder3D());
         pmanager = new ParticleManager(1.0, 11, 11, 11);
-        pmanager.setElectricField(-1.0E6, -1.0E6, -1.0E6);
-        pmanager.addElectron(0.01, 0.01, 0.01, 0.1, 0.1, 0.0);
-
-        setupUIComponets();
 
         // Timelineの初期化(0.5秒周期)
         tl = new Timeline(new KeyFrame(Duration.seconds(0.5), event -> {
@@ -98,6 +100,22 @@ public class MainUIController implements Initializable {
         nextBtn.setOnAction(event -> {
             pmanager.update();
             dbuilder.update(pmanager.getParticles());
+        });
+        addParticleBtn.setOnAction(event -> {
+            AddParticleUIController cont = new AddParticleUIController();
+            genStage("AddParticle", "/fxml/AddParticle.fxml", cont).showAndWait();
+            if(cont.inpOk) {
+                int id = 0;
+                if(cont.setElectron) {
+                    id = pmanager.addElectron(cont.x, cont.y, cont.z, cont.vx, cont.vy, cont.vz);
+                } else {
+                    id = pmanager.addProton(cont.x, cont.y, cont.z, cont.vx, cont.vy, cont.vz);
+                }
+                particleList.getItems().add(
+                    new ParticleStatData(id, cont.setElectron, true, new Vector3(cont.x, cont.y, cont.z), new Vector3(cont.vx, cont.vy, cont.vz))
+                );
+                dbuilder.update(pmanager.getParticles());
+            }
         });
 
         // 粒子一覧を表示するListView
@@ -149,6 +167,32 @@ public class MainUIController implements Initializable {
         displayPane.getChildren().add(newScene);
 
         dbuilder = newBuilder;
+    }
+
+    /**
+     * 指定FXMlを元にStageを生成して返す
+     *
+     * @param title タイトル
+     * @param fxmlPath FXMLファイルのパス
+     * @param controller UIコントローラ
+     * @return Stage
+     */
+    private <T> Stage genStage(String title, String fxmlPath, T controller) {
+        // FXML読み込み
+        Scene scene = null;
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath), resource);
+            if(controller != null)
+                loader.setController(controller);
+            scene = new Scene(loader.load());
+        } catch (Exception e){ e.printStackTrace(); return null; }
+
+        // ダイアログ立ち上げ
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setScene(scene);
+        stage.setTitle("Electrody - "+title);
+        return stage;
     }
 
 }
