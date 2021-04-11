@@ -61,7 +61,7 @@
                      <children>
                         <HBox alignment="BOTTOM_CENTER" spacing="10.0">
                            <children>
-                              <Label text="0.0000000000123">
+                              <Label fx:id="time" text="0.0000000000123">
                                  <font>
                                     <Font size="30.0" />
                                  </font>
@@ -80,7 +80,7 @@
                                     <Font size="25.0" />
                                  </font>
                               </Label>
-                              <Label text="1.23E-11">
+                              <Label fx:id="timeE" text="1.23E-11">
                                  <font>
                                     <Font size="25.0" />
                                  </font>

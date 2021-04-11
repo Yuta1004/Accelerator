@@ -11,6 +11,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.Slider;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.Label;
 import javafx.animation.Timeline;
 import javafx.animation.KeyFrame;
 import javafx.util.Duration;
@@ -24,6 +25,7 @@ public class MainUIController implements Initializable {
 
     // UI部品
     @FXML private AnchorPane displayPane;
+    @FXML private Label time, timeE;
     @FXML private Tab cameraTab3D;
     @FXML private TabPane cameraTab;
     @FXML private Slider cameraX, cameraY, cameraZ, cameraRH, cameraRV;
@@ -52,6 +54,8 @@ public class MainUIController implements Initializable {
         // Timelineの初期化(0.5秒周期)
         tl = new Timeline(new KeyFrame(Duration.seconds(0.5), event -> {
             pmanager.update();
+            time.setText(String.format("%.12f", pmanager.getTime()));
+            timeE.setText(String.format("%.2E", pmanager.getTime()));
             dbuilder.update(pmanager.getParticles());
         }));
         tl.setCycleCount(Timeline.INDEFINITE);
