@@ -15,7 +15,7 @@
       <StackPane prefWidth="50.0">
          <children>
             <Circle fx:id="circle" fill="#1f93ffb1" radius="22.0" stroke="BLACK" strokeType="INSIDE" />
-            <Label text="電子">
+            <Label fx:id="name" text="電子">
                <font>
                   <Font size="19.0" />
                </font>
