@@ -22,6 +22,7 @@ import javafx.scene.control.TextField;
 import javafx.animation.Timeline;
 import javafx.animation.KeyFrame;
 import javafx.util.Duration;
+
 import builder.DisplayBuilder;
 import builder.Builder3D;
 import particle.Vector3;
