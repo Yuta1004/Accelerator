@@ -66,6 +66,19 @@ public class Builder3D implements DisplayBuilder {
     }
 
     /**
+     * 3Dカメラ位置をセットする
+     */
+    public void set3DCamera(double x, double y, double z, double rh, double rv) {
+        cam.getTransforms().clear();
+        cam.getTransforms().addAll(
+            new Rotate(-90.0, new Point3D(1, 0, 0)),    // z軸補正
+            new Rotate(-rh-90, new Point3D(0, 1, 0)),   // H
+            new Rotate(-rv, new Point3D(1, 0, 0)),      // V
+            new Translate(x, y, z)                      // 座標
+        );
+    }
+
+    /**
      * 画面更新を行う
      *
      * @param particles 描画する粒子
@@ -103,5 +116,8 @@ public class Builder3D implements DisplayBuilder {
         material.setSpecularColor(c.brighter());
         return material;
     }
+
+    /* 未使用メソッド */
+    public void set2DCamera(double widthS, double widthF, double heightS, double heightF){}
 
 }
