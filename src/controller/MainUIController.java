@@ -13,6 +13,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.animation.Timeline;
 import javafx.animation.KeyFrame;
 import javafx.util.Duration;
@@ -31,6 +32,7 @@ public class MainUIController implements Initializable {
     @FXML private TabPane cameraTab;
     @FXML private Slider cameraX, cameraY, cameraZ, cameraRH, cameraRV;
     @FXML private Button playBtn, initBtn, resetBtn, nextBtn;
+    @FXML private ListView<ParticleStatData> particleList;
 
     // 描画用
     private Timeline tl;
@@ -97,6 +99,9 @@ public class MainUIController implements Initializable {
             pmanager.update();
             dbuilder.update(pmanager.getParticles());
         });
+
+        // 粒子一覧を表示するListView
+        particleList.setCellFactory(__ -> new ParticleListCell());
 
         // 2D/3Dカメラ操作タブ
         cameraTab.getStyleClass().add("floating");
