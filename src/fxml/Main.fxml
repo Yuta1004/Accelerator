@@ -37,12 +37,12 @@
           <items>
                   <Menu mnemonicParsing="false" text="2D">
                     <items>
-                      <MenuItem mnemonicParsing="false" text="XY−平面" />
-                        <MenuItem mnemonicParsing="false" text="YZ-平面" />
-                        <MenuItem mnemonicParsing="false" text="ZX-平面" />
+                      <MenuItem fx:id="view2DXY" mnemonicParsing="false" text="XY−平面" />
+                        <MenuItem fx:id="view2DYZ" mnemonicParsing="false" text="YZ-平面" />
+                        <MenuItem fx:id="view2DZX" mnemonicParsing="false" text="ZX-平面" />
                     </items>
                   </Menu>
-            <MenuItem mnemonicParsing="false" text="3D" />
+            <MenuItem fx:id="view3D" mnemonicParsing="false" text="3D" />
           </items>
         </Menu>
             <Menu mnemonicParsing="false" text="設定">

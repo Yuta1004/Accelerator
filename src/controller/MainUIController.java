@@ -19,12 +19,16 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.MenuItem;
 import javafx.animation.Timeline;
 import javafx.animation.KeyFrame;
 import javafx.util.Duration;
 
 import builder.DisplayBuilder;
 import builder.Builder3D;
+import builder.Builder2DXY;
+import builder.Builder2DYZ;
+import builder.Builder2DZX;
 import particle.Vector3;
 import particle.ParticleManager;
 
@@ -39,6 +43,7 @@ public class MainUIController implements Initializable {
     @FXML private Button playBtn, initBtn, resetBtn, nextBtn, addParticleBtn, removeParticleBtn;
     @FXML private TextField ex, ey, ez, bx, by, bz;
     @FXML private ListView<ParticleStatData> particleList;
+    @FXML private MenuItem view2DXY, view2DYZ, view2DZX, view3D;
 
     // 描画用
     private Timeline tl;
@@ -157,7 +162,7 @@ public class MainUIController implements Initializable {
             }
         });
 
-        /* 2D/3Dカメラ操作タブ */
+        /* カメラ操作タブ */
         cameraTab.getStyleClass().add("floating");
         cameraTab.getSelectionModel().select(cameraTab3D);
 
@@ -185,6 +190,16 @@ public class MainUIController implements Initializable {
             cameraRV.setValue((cameraRV.getValue()+diffY+360) % 360);
             updateCamera3D.run();
         });
+
+        /* メニュー */
+        view3D.setOnAction(event -> {
+            changeDBuilder(new Builder3D());
+            dbuilder.update(pmanager);
+            updateCamera3D.run();
+        });
+        view2DXY.setOnAction(event -> { changeDBuilder(new Builder2DXY()); dbuilder.update(pmanager); });
+        view2DYZ.setOnAction(event -> { changeDBuilder(new Builder2DYZ()); dbuilder.update(pmanager); });
+        view2DZX.setOnAction(event -> { changeDBuilder(new Builder2DZX()); dbuilder.update(pmanager); });
     }
 
     /**
