@@ -160,9 +160,9 @@
                                     </Text>
                                     <VBox spacing="5.0">
                                        <children>
-                                          <TextField prefWidth="80.0" promptText="Ex" />
-                                          <TextField prefWidth="80.0" promptText="Ey" />
-                                          <TextField prefWidth="80.0" promptText="Ez" />
+                                          <TextField fx:id="ex" prefWidth="80.0" promptText="Ex" />
+                                          <TextField fx:id="ey" prefWidth="80.0" promptText="Ey" />
+                                          <TextField fx:id="ez" prefWidth="80.0" promptText="Ez" />
                                        </children>
                                     </VBox>
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text=")">
@@ -199,9 +199,9 @@
                                     </Text>
                                     <VBox spacing="5.0">
                                        <children>
-                                          <TextField prefWidth="80.0" promptText="Bx" />
-                                          <TextField prefWidth="80.0" promptText="By" />
-                                          <TextField prefWidth="80.0" promptText="Bz" />
+                                          <TextField fx:id="bx" prefWidth="80.0" promptText="Bx" />
+                                          <TextField fx:id="by" prefWidth="80.0" promptText="By" />
+                                          <TextField fx:id="bz" prefWidth="80.0" promptText="Bz" />
                                        </children>
                                     </VBox>
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text=")">

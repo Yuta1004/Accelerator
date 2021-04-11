@@ -18,6 +18,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.animation.Timeline;
 import javafx.animation.KeyFrame;
 import javafx.util.Duration;
@@ -35,6 +36,7 @@ public class MainUIController implements Initializable {
     @FXML private TabPane cameraTab;
     @FXML private Slider cameraX, cameraY, cameraZ, cameraRH, cameraRV;
     @FXML private Button playBtn, initBtn, resetBtn, nextBtn, addParticleBtn, removeParticleBtn;
+    @FXML private TextField ex, ey, ez, bx, by, bz;
     @FXML private ListView<ParticleStatData> particleList;
 
     // 描画用
@@ -71,19 +73,28 @@ public class MainUIController implements Initializable {
      * UIのセットアップを行う
      */
     private void setupUIComponets() {
-        // コントロールパネル
+        /* コントロールパネル */
         playBtn.setOnAction(event -> {
-            if(playBtn.getText().equals("再生")) {
-                playBtn.setText("停止");
-                addParticleBtn.setDisable(true);
-                removeParticleBtn.setDisable(true);
-                tl.play();
-            } else {
-                playBtn.setText("再生");
-                addParticleBtn.setDisable(false);
-                removeParticleBtn.setDisable(false);
-                tl.stop();
+            boolean isPlaying = playBtn.getText().equals("停止");
+            playBtn.setText(isPlaying ? "再生" : "停止");
+            addParticleBtn.setDisable(!isPlaying);
+            removeParticleBtn.setDisable(!isPlaying);
+
+            // 電場, 磁束密度の入力値を反映させる
+            double inpValues[]= {0.0, 0.0, 0,0, 0.0, 0.0, 0.0};
+            TextField inpComponents[] = {ex, ey, ez, bx, by, bz};
+            for(int idx = 0; idx < 6; ++ idx) {
+                try {
+                    inpValues[idx] = Double.parseDouble(inpComponents[idx].getText());
+                } catch (Exception e) {
+                    inpValues[idx] = 0.0;
+                    inpComponents[idx].setText("0.0");
+                }
             }
+            pmanager.setElectricField(inpValues[0], inpValues[1], inpValues[2]);
+            pmanager.setMagneticFluxDensity(inpValues[3], inpValues[4], inpValues[5]);
+
+            if(isPlaying) tl.stop(); else tl.play();
         });
 
         initBtn.setOnAction(event -> {
@@ -115,6 +126,9 @@ public class MainUIController implements Initializable {
             dbuilder.update(pmanager.getParticles());
         });
 
+        /* 粒子操作パネル */
+        particleList.setCellFactory(__ -> new ParticleListCell());
+
         addParticleBtn.setOnAction(event -> {
             AddParticleUIController cont = new AddParticleUIController();
             genStage("AddParticle", "/fxml/AddParticle.fxml", cont).showAndWait();
@@ -142,14 +156,11 @@ public class MainUIController implements Initializable {
             }
         });
 
-        // 粒子一覧を表示するListView
-        particleList.setCellFactory(__ -> new ParticleListCell());
-
-        // 2D/3Dカメラ操作タブ
+        /* 2D/3Dカメラ操作タブ */
         cameraTab.getStyleClass().add("floating");
         cameraTab.getSelectionModel().select(cameraTab3D);
 
-        // 3Dカメラ
+        /* 3Dカメラ */
         Runnable updateCamera3D = () -> {
             double x = cameraX.getValue();
             double y = cameraY.getValue();
@@ -164,7 +175,7 @@ public class MainUIController implements Initializable {
         cameraRH.valueProperty().addListener((__, oldV, newV) -> updateCamera3D.run());
         cameraRV.valueProperty().addListener((__, oldV, newV) -> updateCamera3D.run());
 
-        // 3Dカメラ(マウス操作)
+        /* 3Dカメラ(マウス操作) */
         displayPane.setOnMousePressed((event) -> oldMousePos = new Vector3(event.getX(), event.getY(), 0.0));
         displayPane.setOnMouseDragged((event) -> {
             double diffX = -(event.getX()-oldMousePos.x) * sensitivity;
