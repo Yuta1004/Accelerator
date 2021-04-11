@@ -16,6 +16,7 @@ import javafx.geometry.Point3D;
 
 import particle.Vector3;
 import particle.Particle;
+import particle.ParticleManager;
 
 public class Builder3D implements DisplayBuilder {
 
@@ -67,7 +68,7 @@ public class Builder3D implements DisplayBuilder {
      *
      * @param particles 描画する粒子
      */
-    public void update(Particle[] particles) {
+    public void update(ParticleManager pmanager) {
         // 直前に追加した粒子の色を落とす
         PhongMaterial material = genPhongMaterial(Color.DODGERBLUE, 0.6);
         for(Sphere s : newerAddedModels) {
@@ -77,7 +78,7 @@ public class Builder3D implements DisplayBuilder {
 
         // 新規粒子追加
         material = genPhongMaterial(Color.DODGERBLUE, 1.0);
-        for(Particle p : particles) {
+        for(Particle p : pmanager.getParticles()) {
             Vector3 pos = p.getPos();
             Sphere model = new Sphere(0.3);
             model.setTranslateX(pos.x);

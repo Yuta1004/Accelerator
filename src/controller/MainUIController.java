@@ -64,7 +64,7 @@ public class MainUIController implements Initializable {
             pmanager.update();
             time.setText(String.format("%.12f", pmanager.getTime()));
             timeE.setText(String.format("%.2E", pmanager.getTime()));
-            dbuilder.update(pmanager.getParticles());
+            dbuilder.update(pmanager);
         }));
         tl.setCycleCount(Timeline.INDEFINITE);
     }
@@ -118,12 +118,12 @@ public class MainUIController implements Initializable {
             removeParticleBtn.setDisable(false);
             pmanager.reset();
             dbuilder.reset();
-            dbuilder.update(pmanager.getParticles());
+            dbuilder.update(pmanager);
         });
 
         nextBtn.setOnAction(event -> {
             pmanager.update();
-            dbuilder.update(pmanager.getParticles());
+            dbuilder.update(pmanager);
         });
 
         /* 粒子操作パネル */
@@ -142,7 +142,7 @@ public class MainUIController implements Initializable {
                 particleList.getItems().add(
                     new ParticleStatData(id, cont.setElectron, new Vector3(cont.x, cont.y, cont.z), new Vector3(cont.vx, cont.vy, cont.vz))
                 );
-                dbuilder.update(pmanager.getParticles());
+                dbuilder.update(pmanager);
             }
         });
 
@@ -152,7 +152,7 @@ public class MainUIController implements Initializable {
                 pmanager.remove(data.id);
                 particleList.getItems().remove(particleList.getSelectionModel().getSelectedIndex());
                 dbuilder.reset();
-                dbuilder.update(pmanager.getParticles());
+                dbuilder.update(pmanager);
             }
         });
 
