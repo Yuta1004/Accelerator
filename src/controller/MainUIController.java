@@ -12,6 +12,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.Label;
+import javafx.scene.control.Button;
 import javafx.animation.Timeline;
 import javafx.animation.KeyFrame;
 import javafx.util.Duration;
@@ -29,6 +30,7 @@ public class MainUIController implements Initializable {
     @FXML private Tab cameraTab3D;
     @FXML private TabPane cameraTab;
     @FXML private Slider cameraX, cameraY, cameraZ, cameraRH, cameraRV;
+    @FXML private Button playBtn, initBtn, resetBtn, nextBtn;
 
     // 描画用
     private Timeline tl;
@@ -59,14 +61,43 @@ public class MainUIController implements Initializable {
             dbuilder.update(pmanager.getParticles());
         }));
         tl.setCycleCount(Timeline.INDEFINITE);
-
-        tl.play();
     }
 
     /**
      * UIのセットアップを行う
      */
     private void setupUIComponets() {
+        // コントロールパネル
+        playBtn.setOnAction(event -> {
+            if(playBtn.getText().equals("再生")) {
+                playBtn.setText("停止");
+                tl.play();
+            } else {
+                playBtn.setText("再生");
+                tl.stop();
+            }
+        });
+        initBtn.setOnAction(event -> {
+            tl.stop();
+            playBtn.setText("再生");
+            time.setText("0.0000000000");
+            timeE.setText("0.00E-11");
+            pmanager = new ParticleManager(1.0, 11, 11, 11);
+            dbuilder.reset();
+        });
+        resetBtn.setOnAction(event -> {
+            tl.stop();
+            playBtn.setText("再生");
+            time.setText("0.0000000000");
+            timeE.setText("0.00E-11");
+            // pmanager.reset();
+            dbuilder.reset();
+        });
+        nextBtn.setOnAction(event -> {
+            pmanager.update();
+            dbuilder.update(pmanager.getParticles());
+        });
+
         // 2D/3Dカメラ操作タブ
         cameraTab.getStyleClass().add("floating");
         cameraTab.getSelectionModel().select(cameraTab3D);

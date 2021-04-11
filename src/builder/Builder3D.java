@@ -28,22 +28,7 @@ public class Builder3D implements DisplayBuilder {
      */
     public Builder3D() {
         root = new Group();
-        newerAddedModels = new ArrayList<Sphere>();
-
-        // 軸
-        Vector3 positions[] = {new Vector3(15.0, 0.0, 0.0), new Vector3(0.0, 15.0, 0.0), new Vector3(0.0, 0.0, 15.0)};
-        Vector3 sizes[] = {new Vector3(30.0, 0.05, 0.05), new Vector3(0.05, 30.0, 0.05), new Vector3(0.05, 0.05, 30.0)};
-        for(int idx = 0; idx < 3; ++ idx) {
-            Sphere dot = new Sphere(0.2);
-            Box axis = new Box(sizes[idx].x, sizes[idx].y, sizes[idx].z);
-            PhongMaterial material = genPhongMaterial(idx == 0 ? Color.RED : idx == 1 ? Color.GREEN : Color.BLUE, 1.0);
-            dot.getTransforms().add(new Translate(positions[idx].x, positions[idx].y, positions[idx].z));
-            dot.setMaterial(material);
-            dot.setDrawMode(DrawMode.FILL);
-            axis.setMaterial(material);
-            axis.setDrawMode(DrawMode.FILL);
-            root.getChildren().addAll(axis, dot);
-        }
+        reset();
 
         // カメラセットアップ
         cam = new PerspectiveCamera(true);
@@ -102,6 +87,29 @@ public class Builder3D implements DisplayBuilder {
             model.setDrawMode(DrawMode.FILL);
             newerAddedModels.add(model);
             root.getChildren().add(model);
+        }
+    }
+
+    /**
+     * 表示内容のリセットを行う
+     */
+    public void reset() {
+        root.getChildren().clear();
+        newerAddedModels = new ArrayList<Sphere>();
+
+        // 軸モデル
+        Vector3 positions[] = {new Vector3(15.0, 0.0, 0.0), new Vector3(0.0, 15.0, 0.0), new Vector3(0.0, 0.0, 15.0)};
+        Vector3 sizes[] = {new Vector3(30.0, 0.05, 0.05), new Vector3(0.05, 30.0, 0.05), new Vector3(0.05, 0.05, 30.0)};
+        for(int idx = 0; idx < 3; ++ idx) {
+            Sphere dot = new Sphere(0.2);
+            Box axis = new Box(sizes[idx].x, sizes[idx].y, sizes[idx].z);
+            PhongMaterial material = genPhongMaterial(idx == 0 ? Color.RED : idx == 1 ? Color.GREEN : Color.BLUE, 1.0);
+            dot.getTransforms().add(new Translate(positions[idx].x, positions[idx].y, positions[idx].z));
+            dot.setMaterial(material);
+            dot.setDrawMode(DrawMode.FILL);
+            axis.setMaterial(material);
+            axis.setDrawMode(DrawMode.FILL);
+            root.getChildren().addAll(axis, dot);
         }
     }
 
