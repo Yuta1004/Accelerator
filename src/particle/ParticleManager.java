@@ -1,6 +1,6 @@
 package particle;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ParticleManager {
 
@@ -10,7 +10,9 @@ public class ParticleManager {
     private       Vector3 Bmfd;     // 空間中の磁束密度(B)
 
     private int updateCnt = 0;
-    private ArrayList<Particle> particles;
+    private HashMap<Integer, Particle> particles;
+    private HashMap<Integer, Vector3> initialPositions;
+    private HashMap<Integer, Vector3> initialVelocities;
 
     /**
      * ParticleManagerのコンストラクタ
@@ -27,7 +29,9 @@ public class ParticleManager {
         this.Ef = new Vector3(0, 0, 0);
         this.Bmfd = new Vector3(0, 0, 0);
 
-        particles = new ArrayList<Particle>();
+        particles = new HashMap<Integer, Particle>();
+        initialPositions = new HashMap<Integer, Vector3>();
+        initialVelocities = new HashMap<Integer, Vector3>();
     }
 
     /**
@@ -61,9 +65,10 @@ public class ParticleManager {
      * @param vx 初速度のx成分
      * @param vy 初速度のy成分
      * @param vz 初速度のz成分
+     * @return int 登録されたID
      */
-    public void addElectron(double x, double y, double z, double vx, double vy, double vz) {
-        __addParticle(-1.0, 1.0, x, y, z, vx, vy, vz);
+    public int addElectron(double x, double y, double z, double vx, double vy, double vz) {
+        return __addParticle(-1.0, 1.0, x, y, z, vx, vy, vz);
     }
 
     /**
@@ -75,18 +80,25 @@ public class ParticleManager {
      * @param vx 初速度のx成分
      * @param vy 初速度のy成分
      * @param vz 初速度のz成分
+     * @return int 登録されたid
      */
-    public void addProton(double x, double y, double z, double vx, double vy, double vz) {
-        __addParticle(1.0, 1836.1, x, y, z, vx, vy, vz);
+    public int addProton(double x, double y, double z, double vx, double vy, double vz) {
+        return __addParticle(1.0, 1836.1, x, y, z, vx, vy, vz);
     }
 
-    private void __addParticle(double Q, double SM, double x, double y, double z, double vx, double vy, double vz) {
+    private int __addParticle(double Q, double SM, double x, double y, double z, double vx, double vy, double vz) {
         Particle p = new Particle(Q, SM, DT, meshN.x, meshN.y, meshN.z);
         p.setPos(x, y, z);
         p.setVelocity(vx, vy, vz);
         p.setElectricField(Ef.x, Ef.y, Ef.z);
         p.setMagneticFluxDensity(Bmfd.x, Bmfd.y, Bmfd.z);
-        particles.add(p);
+
+        int id = particles.size();
+        particles.put(id, p);
+        initialPositions.put(id, new Vector3(x, y, z));
+        initialVelocities.put(id, new Vector3(vx, vy, vz));
+
+        return id;
     }
 
     /**
@@ -94,7 +106,7 @@ public class ParticleManager {
      */
     public void update() {
         ++ updateCnt;
-        for(Particle p: particles) {
+        for(Particle p: particles.values()) {
             p.update();
         }
     }
@@ -109,8 +121,8 @@ public class ParticleManager {
     /**
      * 管理下にある粒子を返す
      */
-    public ArrayList<Particle> getParticles() {
-        return particles;
+    public Particle[] getParticles() {
+        return (Particle[])(particles.values().toArray());
     }
 
 }

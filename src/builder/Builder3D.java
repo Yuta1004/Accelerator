@@ -67,7 +67,7 @@ public class Builder3D implements DisplayBuilder {
      *
      * @param particles 描画する粒子
      */
-    public void update(ArrayList<Particle> particles) {
+    public void update(Particle[] particles) {
         // 直前に追加した粒子の色を落とす
         PhongMaterial material = genPhongMaterial(Color.DODGERBLUE, 0.6);
         for(Sphere s : newerAddedModels) {
