@@ -24,6 +24,7 @@ import javafx.animation.Timeline;
 import javafx.animation.KeyFrame;
 import javafx.util.Duration;
 
+import util.Util;
 import data.Settings;
 import builder.DisplayBuilder;
 import builder.Builder3D;
@@ -91,14 +92,14 @@ public class MainUIController implements Initializable {
             addParticleBtn.setDisable(!isPlaying);
             removeParticleBtn.setDisable(!isPlaying);
             pmanager.setElectricField(
-                readTextFieldAsDouble(ex, 0.0),
-                readTextFieldAsDouble(ey, 0.0),
-                readTextFieldAsDouble(ez, 0.0)
+                Util.readTextFieldAsDouble(ex, 0.0),
+                Util.readTextFieldAsDouble(ey, 0.0),
+                Util.readTextFieldAsDouble(ez, 0.0)
             );
             pmanager.setMagneticFluxDensity(
-                readTextFieldAsDouble(bx, 0.0),
-                readTextFieldAsDouble(by, 0.0),
-                readTextFieldAsDouble(bz, 0.0)
+                Util.readTextFieldAsDouble(bx, 0.0),
+                Util.readTextFieldAsDouble(by, 0.0),
+                Util.readTextFieldAsDouble(bz, 0.0)
             );
             if(isPlaying) tl.stop(); else tl.play();
         });
@@ -168,10 +169,10 @@ public class MainUIController implements Initializable {
 
         /* 2Dカメラ(視点) */
         Runnable updateCamera2D = () -> {
-            double verticalSVal = readTextFieldAsDouble(verticalS, 0.0);
-            double verticalFVal = readTextFieldAsDouble(verticalF, verticalSVal+1.0);
-            double horizontalSVal = readTextFieldAsDouble(horizontalS, 0.0);
-            double horizontalFVal = readTextFieldAsDouble(horizontalF, horizontalSVal+1.0);
+            double verticalSVal = Util.readTextFieldAsDouble(verticalS, 0.0);
+            double verticalFVal = Util.readTextFieldAsDouble(verticalF, verticalSVal+1.0);
+            double horizontalSVal = Util.readTextFieldAsDouble(horizontalS, 0.0);
+            double horizontalFVal = Util.readTextFieldAsDouble(horizontalF, horizontalSVal+1.0);
             dbuilder.set2DCamera(horizontalSVal, horizontalFVal, verticalSVal, verticalFVal);
             dbuilder.reset();
             dbuilder.update(pmanager);
@@ -280,22 +281,6 @@ public class MainUIController implements Initializable {
         stage.setScene(scene);
         stage.setTitle("Electrody - "+title);
         return stage;
-    }
-
-    /**
-     * TextFieldの値を読みつつ、有効な入力でなかった場合には修正を行う
-     *
-     * @param target 読み取り対象のTextField
-     * @param fixValue 修正値
-     * @return double 読み取った値、修正が行われた場合にはfixValue
-     */
-    private double readTextFieldAsDouble(TextField target, double fixValue) {
-        try {
-            return Double.parseDouble(target.getText());
-        } catch (Exception e) {
-            target.setText(""+fixValue);
-            return fixValue;
-        }
     }
 
 }
