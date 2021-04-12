@@ -43,6 +43,9 @@ public class ParticleManager {
      */
     public void setElectricField(double x, double y, double z) {
         Ef.x = x; Ef.y = y; Ef.z = z;
+        for(Particle p : particles.values()) {
+            p.setElectricField(x, y, z);
+        }
     }
 
     /**
@@ -54,6 +57,9 @@ public class ParticleManager {
      */
     public void setMagneticFluxDensity(double x, double y, double z) {
         Bmfd.x = x; Bmfd.y = y; Bmfd.z = z;
+        for(Particle p : particles.values()) {
+            p.setMagneticFluxDensity(x, y, z);
+        }
     }
 
     /**
