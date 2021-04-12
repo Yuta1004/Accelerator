@@ -2,9 +2,9 @@ package particle;
 
 public class Particle {
 
-    private final double Q;     // 粒子のもつ電荷
-    private final double SM;    // 粒子の静止質量
-    private final double DT;    // 時間進み幅
+    public final double Q;     // 粒子のもつ電荷
+    public final double SM;    // 粒子の静止質量
+    public final double DT;    // 時間進み幅
 
     private       Vector3 Ef;         // 空間中の電界 (E)
     private       Vector3 Bmfd;       // 空間中の磁束密度 (B)

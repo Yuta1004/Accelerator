@@ -40,10 +40,12 @@ public class Builder2DXY extends Builder2D {
         }
 
         // 新規粒子追加
+        Color colorE = Color.web("#1F93FF");
+        Color colorP = Color.web("#FF7021");
         for(Particle p : pmanager.getParticles()) {
             Vector3 pos = p.getPos();
             XYChart.Data<Number, Number> newD = new XYChart.Data<Number, Number>(pos.x, pos.y);
-            newD.setNode(new Circle(Settings.particleSize*30, Color.web(Color.DODGERBLUE.toString(), 1.0)));
+            newD.setNode(new Circle(Settings.particleSize*30, p.Q == 1 ? colorP : colorE));
             series.getData().add(newD);
         }
 

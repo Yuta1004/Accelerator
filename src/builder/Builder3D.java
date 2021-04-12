@@ -74,22 +74,22 @@ public class Builder3D implements DisplayBuilder {
      */
     public void update(ParticleManager pmanager) {
         // 直前に追加した粒子の色を落とす
-        PhongMaterial material = genPhongMaterial(Color.DODGERBLUE, 0.6);
         for(Sphere s : newerAddedModels) {
-            s.setMaterial(material);
+            s.setOpacity(0.6);
         }
         newerAddedModels.clear();
 
         // 新規粒子追加
-        material = genPhongMaterial(Color.DODGERBLUE, 1.0);
+        PhongMaterial materialE = genPhongMaterial(Color.web("#1F93FF"), 1.0);
+        PhongMaterial materialP = genPhongMaterial(Color.web("#FF7021"), 1.0);
         for(Particle p : pmanager.getParticles()) {
             Vector3 pos = p.getPos();
             Sphere model = new Sphere(Settings.particleSize);
             model.setTranslateX(pos.x);
             model.setTranslateY(pos.y);
             model.setTranslateZ(pos.z);
-            model.setMaterial(material);
             model.setDrawMode(DrawMode.FILL);
+            model.setMaterial(p.Q == 1 ? materialP : materialE);
             newerAddedModels.add(model);
             root.getChildren().add(model);
         }
