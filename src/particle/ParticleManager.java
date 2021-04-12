@@ -9,7 +9,7 @@ public class ParticleManager {
     private Vector3 Ef;       // 空間中の電界(E)
     private Vector3 Bmfd;     // 空間中の磁束密度(B)
 
-    private int updateCnt = 0;
+    private int id = 0, updateCnt = 0;
     private HashMap<Integer, Particle> particles;
     private HashMap<Integer, Vector3> initialPositions;
     private HashMap<Integer, Vector3> initialVelocities;
@@ -119,7 +119,7 @@ public class ParticleManager {
         p.setElectricField(Ef.x, Ef.y, Ef.z);
         p.setMagneticFluxDensity(Bmfd.x, Bmfd.y, Bmfd.z);
 
-        int id = particles.size();
+        int id = (this.id++);
         particles.put(id, p);
         initialPositions.put(id, new Vector3(x, y, z));
         initialVelocities.put(id, new Vector3(vx, vy, vz));
