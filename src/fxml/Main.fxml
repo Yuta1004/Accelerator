@@ -241,7 +241,7 @@
                                                       <Font size="20.0" />
                                                    </font>
                                                 </Label>
-                                                <TextField fx:id="verticalF" disable="true" prefWidth="70.0" promptText="1.0" text="1.0">
+                                                <TextField fx:id="verticalF" disable="true" prefWidth="70.0" promptText="2.0" text="2.0">
                                                    <font>
                                                       <Font size="15.0" />
                                                    </font>
@@ -273,7 +273,7 @@
                                                       <Font size="20.0" />
                                                    </font>
                                                 </Label>
-                                                <TextField fx:id="horizontalF" prefWidth="70.0" promptText="1.0" text="1.0">
+                                                <TextField fx:id="horizontalF" prefWidth="70.0" promptText="2.0" text="2.0">
                                                    <font>
                                                       <Font size="15.0" />
                                                    </font>

@@ -174,7 +174,6 @@ public class MainUIController implements Initializable {
             double horizontalSVal = Util.readTextFieldAsDouble(horizontalS, 0.0);
             double horizontalFVal = Util.readTextFieldAsDouble(horizontalF, horizontalSVal+1.0);
             dbuilder.set2DCamera(horizontalSVal, horizontalFVal, verticalSVal, verticalFVal);
-            dbuilder.reset();
             dbuilder.update(pmanager);
         };
         verticalS.textProperty().addListener((__, oldV, newV) -> updateCamera2D.run());
@@ -230,21 +229,18 @@ public class MainUIController implements Initializable {
 
         view2DXY.setOnAction(event -> {
             changeDBuilder(new Builder2DXY());
-            dbuilder.update(pmanager);
             updateCamera2D.run();
             cameraTab.getSelectionModel().select(cameraTab2D);
         });
 
         view2DYZ.setOnAction(event -> {
             changeDBuilder(new Builder2DYZ());
-            dbuilder.update(pmanager);
             updateCamera2D.run();
             cameraTab.getSelectionModel().select(cameraTab2D);
         });
 
         view2DZX.setOnAction(event -> {
             changeDBuilder(new Builder2DZX());
-            dbuilder.update(pmanager);
             updateCamera2D.run();
             cameraTab.getSelectionModel().select(cameraTab2D);
         });

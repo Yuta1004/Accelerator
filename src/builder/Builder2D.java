@@ -53,7 +53,7 @@ public abstract class Builder2D implements DisplayBuilder {
         if(Settings.normalizeAxis) {
             double waSize = ((Number)chart.getXAxis().getWidth()).doubleValue();
             double haSize = ((Number)chart.getYAxis().getHeight()).doubleValue();
-            double aratio = haSize/waSize;
+            double aratio = haSize+waSize == 0 ? 0.7035 : haSize/waSize;
             double baseSize = horizontalF-horizontalS;
             verticalF = verticalS+baseSize*aratio;
         }
