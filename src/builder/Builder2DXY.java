@@ -45,7 +45,7 @@ public class Builder2DXY extends Builder2D {
         for(Particle p : pmanager.getParticles()) {
             Vector3 pos = p.getPos();
             XYChart.Data<Number, Number> newD = new XYChart.Data<Number, Number>(pos.x, pos.y);
-            newD.setNode(new Circle(Settings.particleSize*30, p.Q == 1 ? colorP : colorE));
+            newD.setNode(new Circle(Settings.particleSize*120, p.Q == 1 ? colorP : colorE));
             series.getData().add(newD);
         }
 

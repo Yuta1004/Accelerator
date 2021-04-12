@@ -43,7 +43,7 @@ public class Builder2DYZ extends Builder2D {
         for(Particle p : pmanager.getParticles()) {
             Vector3 pos = p.getPos();
             XYChart.Data<Number, Number> newD = new XYChart.Data<Number, Number>(pos.y, pos.z);
-            newD.setNode(new Circle(Settings.particleSize*30, Color.web(Color.DODGERBLUE.toString(), 1.0)));
+            newD.setNode(new Circle(Settings.particleSize*120, Color.web(Color.DODGERBLUE.toString(), 1.0)));
             series.getData().add(newD);
         }
 
