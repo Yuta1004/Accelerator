@@ -9,8 +9,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.stage.Stage;
 import javafx.stage.Modality;
+import javafx.stage.StageStyle;
 import javafx.scene.Scene;
 import javafx.scene.SubScene;
+import javafx.scene.paint.Color;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.Slider;
 import javafx.scene.control.Tab;
@@ -59,6 +61,12 @@ public class MainUIController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resource) {
+        // Splash表示
+        Stage splash = genStage("", "/fxml/Credit.fxml", new SplashController());
+        splash.getScene().setFill(Color.TRANSPARENT);
+        splash.initStyle(StageStyle.TRANSPARENT);
+        splash.showAndWait();
+
         this.resource = resource;
         initTimeline(Settings.updateTickS);
         setupUIComponets();
