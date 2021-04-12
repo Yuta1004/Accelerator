@@ -14,6 +14,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
 import javafx.geometry.Point3D;
 
+import data.Settings;
 import particle.Vector3;
 import particle.Particle;
 import particle.ParticleManager;
@@ -83,7 +84,7 @@ public class Builder3D implements DisplayBuilder {
         material = genPhongMaterial(Color.DODGERBLUE, 1.0);
         for(Particle p : pmanager.getParticles()) {
             Vector3 pos = p.getPos();
-            Sphere model = new Sphere(0.3);
+            Sphere model = new Sphere(Settings.particleSize);
             model.setTranslateX(pos.x);
             model.setTranslateY(pos.y);
             model.setTranslateZ(pos.z);

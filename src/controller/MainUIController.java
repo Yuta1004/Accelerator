@@ -24,6 +24,7 @@ import javafx.animation.Timeline;
 import javafx.animation.KeyFrame;
 import javafx.util.Duration;
 
+import data.Settings;
 import builder.DisplayBuilder;
 import builder.Builder3D;
 import builder.Builder2DXY;
@@ -50,10 +51,7 @@ public class MainUIController implements Initializable {
     private DisplayBuilder dbuilder;
     private ParticleManager pmanager;
     private ResourceBundle resource;
-
-    // カメラ操作用
     private Vector3 oldMousePos;
-    private double sensitivity = 0.01;
 
     /**
      * UIの初期化を行う
@@ -61,12 +59,19 @@ public class MainUIController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resource) {
         this.resource = resource;
+        initTimeline(Settings.updateTickS);
         setupUIComponets();
         changeDBuilder(new Builder3D());
-        pmanager = new ParticleManager(1.0, 11, 11, 11);
+        pmanager = new ParticleManager(Settings.DT, Settings.meshN, Settings.meshN, Settings.meshN);
+    }
 
-        // Timelineの初期化(0.5秒周期)
-        tl = new Timeline(new KeyFrame(Duration.seconds(0.5), event -> {
+    /**
+     * Timelineを初期化する
+     *
+     * @param duration 遅延時間[ms]
+     */
+    private void initTimeline(double duration) {
+        tl = new Timeline(new KeyFrame(Duration.seconds(duration/1000.0), event -> {
             pmanager.update();
             time.setText(String.format("%.12f", pmanager.getTime()));
             timeE.setText(String.format("%.2E", pmanager.getTime()));
@@ -105,7 +110,7 @@ public class MainUIController implements Initializable {
             timeE.setText("0.00E-11");
             addParticleBtn.setDisable(false);
             removeParticleBtn.setDisable(false);
-            pmanager = new ParticleManager(1.0, 11, 11, 11);
+            pmanager = new ParticleManager(Settings.DT, Settings.meshN, Settings.meshN, Settings.meshN);
             particleList.getItems().clear();
             dbuilder.reset();
         });
@@ -194,8 +199,8 @@ public class MainUIController implements Initializable {
         /* 3Dカメラ(マウス操作) */
         displayPane.setOnMousePressed((event) -> oldMousePos = new Vector3(event.getX(), event.getY(), 0.0));
         displayPane.setOnMouseDragged((event) -> {
-            double diffX = -(event.getX()-oldMousePos.x) * sensitivity;
-            double diffY =  (event.getY()-oldMousePos.y) * sensitivity;
+            double diffX = -(event.getX()-oldMousePos.x) * Settings.mouseSensitivity;
+            double diffY =  (event.getY()-oldMousePos.y) * Settings.mouseSensitivity;
             cameraRH.setValue((cameraRH.getValue()+diffX+360) % 360);
             cameraRV.setValue((cameraRV.getValue()+diffY+360) % 360);
             updateCamera3D.run();

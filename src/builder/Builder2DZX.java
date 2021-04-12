@@ -5,6 +5,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.chart.XYChart;
 
+import data.Settings;
 import particle.Vector3;
 import particle.Particle;
 import particle.ParticleManager;
@@ -42,7 +43,7 @@ public class Builder2DZX extends Builder2D {
         for(Particle p : pmanager.getParticles()) {
             Vector3 pos = p.getPos();
             XYChart.Data<Number, Number> newD = new XYChart.Data<Number, Number>(pos.z, pos.x);
-            newD.setNode(new Circle(10.0, Color.web(Color.DODGERBLUE.toString(), 1.0)));
+            newD.setNode(new Circle(Settings.particleSize, Color.web(Color.DODGERBLUE.toString(), 1.0)));
             series.getData().add(newD);
         }
 
