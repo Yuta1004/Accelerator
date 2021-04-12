@@ -38,7 +38,7 @@ public class Builder3D implements DisplayBuilder {
         cam.setFieldOfView(45.5);
         cam.setNearClip(1.0);
         cam.setFarClip(1000000.0);
-        set3DCamera(30, 0, 0, 45, 30);
+        set3DCamera(5, 0, 0, 45, 30);
     };
 
     /**
@@ -103,18 +103,19 @@ public class Builder3D implements DisplayBuilder {
         newerAddedModels = new ArrayList<Sphere>();
 
         // 軸モデル
-        Vector3 positions[] = {new Vector3(15.0, 0.0, 0.0), new Vector3(0.0, 15.0, 0.0), new Vector3(0.0, 0.0, 15.0)};
-        Vector3 sizes[] = {new Vector3(30.0, 0.05, 0.05), new Vector3(0.05, 30.0, 0.05), new Vector3(0.05, 0.05, 30.0)};
+        Vector3 positions[] = {new Vector3(5.0, 0.0, 0.0), new Vector3(0.0, 5.0, 0.0), new Vector3(0.0, 0.0, 5.0)};
+        Vector3 sizes[] = {new Vector3(5.0, 0.03, 0.03), new Vector3(0.03, 5.0, 0.03), new Vector3(0.03, 0.03, 5.0)};
         for(int idx = 0; idx < 3; ++ idx) {
-            Sphere dot = new Sphere(0.2);
+            Sphere dot = new Sphere(0.1);
             Box axis = new Box(sizes[idx].x, sizes[idx].y, sizes[idx].z);
             PhongMaterial material = genPhongMaterial(idx == 0 ? Color.RED : idx == 1 ? Color.GREEN : Color.BLUE, 1.0);
-            dot.getTransforms().add(new Translate(positions[idx].x, positions[idx].y, positions[idx].z));
             dot.setMaterial(material);
             dot.setDrawMode(DrawMode.FILL);
+            dot.getTransforms().add(new Translate(positions[idx].x, positions[idx].y, positions[idx].z));
             axis.setMaterial(material);
             axis.setDrawMode(DrawMode.FILL);
-            root.getChildren().addAll(axis, dot);
+            axis.getTransforms().add(new Translate(positions[idx].x/2, positions[idx].y/2, positions[idx].z/2));
+            root.getChildren().addAll(dot, axis);
         }
     }
 
