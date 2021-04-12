@@ -7,11 +7,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
          <children>
-            <Label text="Electrody">
+            <Label text="Accelerator">
+               <font>
+                  <Font name="Fira Mono Bold for Powerline" size="20.0" />
+               </font>
+            </Label>
+            <Label text="Mr.加速器">
                <font>
                   <Font name="Fira Mono Bold for Powerline" size="40.0" />
                </font>
@@ -24,9 +29,23 @@
             <Pane prefHeight="50.0" />
             <HBox alignment="CENTER" spacing="20.0">
                <children>
+                  <Label text="米子工業高等専門学校">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label text="松本 正己">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" spacing="20.0">
+               <children>
                   <VBox alignment="CENTER">
                      <children>
-                        <Label text="弓削商船">
+                        <Label text="弓削商船高等専門学校">
                            <font>
                               <Font size="20.0" />
                            </font>

@@ -21,7 +21,7 @@ public class Main extends Application {
         Scene scene = new Scene(loader.load());
 
         // Stage
-        stage.setTitle("Electrody");
+        stage.setTitle("Mr.加速器");
         stage.setScene(scene);
         stage.show();
     }

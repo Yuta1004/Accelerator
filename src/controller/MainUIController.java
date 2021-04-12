@@ -286,7 +286,7 @@ public class MainUIController implements Initializable {
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setScene(scene);
-        stage.setTitle("Electrody - "+title);
+        stage.setTitle("Mr.加速器 - "+title);
         return stage;
     }
 
