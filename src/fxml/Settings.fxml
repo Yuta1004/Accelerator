@@ -133,7 +133,7 @@
                                                       </Label>
                                                    </children>
                                                 </AnchorPane>
-                                                <Slider fx:id="updateTickS" majorTickUnit="200.0" max="1000.0" min="200.0" minorTickCount="100" prefWidth="150.0" showTickMarks="true" value="600.0" />
+                                                <Slider fx:id="updateTickS" majorTickUnit="200.0" max="1000.0" min="50.0" minorTickCount="100" prefWidth="150.0" showTickMarks="true" value="500.0" />
                                              </children>
                                           </VBox>
                                        </children>

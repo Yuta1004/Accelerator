@@ -25,7 +25,7 @@ public class SettingsUIController implements Initializable {
     public void initialize(URL location, ResourceBundle resource) {
         // 値セット
         DT.setText(Settings.DT+"");
-        updateTickS.setValue(1200-Settings.updateTickS);
+        updateTickS.setValue(1050-Settings.updateTickS);
         particleSize.setValue(Settings.particleSize);
         mouseSensitivity.setValue(Settings.mouseSensitivity);
         normalizeAxis.setSelected(Settings.normalizeAxis);
@@ -33,7 +33,7 @@ public class SettingsUIController implements Initializable {
 
         // リスナー
         DT.textProperty().addListener(event -> Settings.DT = Util.readTextFieldAsDouble(DT, 0.5));
-        updateTickS.valueProperty().addListener((__, oldV, newV) -> Settings.updateTickS = 1200-newV.doubleValue());
+        updateTickS.valueProperty().addListener((__, oldV, newV) -> Settings.updateTickS = 1050-newV.doubleValue());
         particleSize.valueProperty().addListener((__, oldV, newV) -> Settings.particleSize = newV.doubleValue());
         mouseSensitivity.valueProperty().addListener((__, oldV, newV) -> Settings.mouseSensitivity = newV.doubleValue());
         normalizeAxis.setOnAction(event -> Settings.normalizeAxis = normalizeAxis.isSelected());
