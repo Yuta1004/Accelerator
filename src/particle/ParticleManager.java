@@ -4,10 +4,10 @@ import java.util.HashMap;
 
 public class ParticleManager {
 
-    private final double DT;        // 時間進み幅
-    private final Vector3 meshN;    // 各軸方向の空間メッシュ数
-    private       Vector3 Ef;       // 空間中の電界(E)
-    private       Vector3 Bmfd;     // 空間中の磁束密度(B)
+    private double DT;        // 時間進み幅
+    private Vector3 meshN;    // 各軸方向の空間メッシュ数
+    private Vector3 Ef;       // 空間中の電界(E)
+    private Vector3 Bmfd;     // 空間中の磁束密度(B)
 
     private int updateCnt = 0;
     private HashMap<Integer, Particle> particles;
@@ -24,14 +24,34 @@ public class ParticleManager {
      * @param NZ z軸方向の空間メッシュ数
      */
     public ParticleManager(double DT, double NX, double NY, double NZ) {
-        this.DT = DT;
-        this.meshN = new Vector3(NX, NY, NZ);
-        this.Ef = new Vector3(0, 0, 0);
-        this.Bmfd = new Vector3(0, 0, 0);
+        setDT(DT);
+        setMeshN(NX, NY, NZ);
+        Ef = new Vector3(0.0, 0.0, 0.0);
+        Bmfd = new Vector3(0.0, 0.0, 0.0);
 
         particles = new HashMap<Integer, Particle>();
         initialPositions = new HashMap<Integer, Vector3>();
         initialVelocities = new HashMap<Integer, Vector3>();
+    }
+
+    /**
+     * DT値をセットする
+     *
+     * @param DT 時間進み幅
+     */
+    public void setDT(double DT) {
+        this.DT = DT;
+    }
+
+    /**
+     * 空間メッシュ数をセットする
+     *
+     * @param NX x軸方向の空間メッシュ数
+     * @param NY y軸方向の空間メッシュ数
+     * @param NZ z軸方向の空間メッシュ数
+     */
+    public void setMeshN(double NX, double NY, double NZ) {
+        this.meshN = new Vector3(NX, NY, NZ);
     }
 
     /**

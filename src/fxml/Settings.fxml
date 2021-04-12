@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="270.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+  <children>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+         <children>
+            <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <tabs>
+                <Tab text="基本設定">
+                  <content>
+                    <AnchorPane>
+                           <children>
+                              <GridPane prefHeight="152.0" prefWidth="500.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <AnchorPane>
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT" spacing="10.0" AnchorPane.leftAnchor="40.0">
+                                             <children>
+                                                <Label text="時間進み幅 Δt">
+                                                   <font>
+                                                      <Font size="20.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="※" textFill="RED">
+                                                   <font>
+                                                      <Font size="12.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                          <TextField fx:id="DT" prefWidth="50.0" promptText="0.5" text="0.5" AnchorPane.rightAnchor="90.0" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane GridPane.rowIndex="1">
+                                       <children>
+                                          <Label layoutX="-10.0" layoutY="1.0" text="粒子の描画サイズ" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="0.0">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <VBox AnchorPane.rightAnchor="40.0">
+                                             <children>
+                                                <AnchorPane>
+                                                   <children>
+                                                      <Label text="小" AnchorPane.leftAnchor="0.0">
+                                                         <font>
+                                                            <Font size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label text="大" AnchorPane.rightAnchor="0.0">
+                                                         <font>
+                                                            <Font size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </AnchorPane>
+                                                <Slider fx:id="particleSize" blockIncrement="0.1" majorTickUnit="1.0" max="0.6" min="0.01" minorTickCount="0" prefWidth="150.0" showTickMarks="true" value="0.3" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane GridPane.rowIndex="2">
+                                       <children>
+                                          <Label layoutX="-10.0" layoutY="1.0" text="マウス感度(3D)" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="0.0">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <VBox AnchorPane.rightAnchor="40.0">
+                                             <children>
+                                                <AnchorPane>
+                                                   <children>
+                                                      <Label text="低" AnchorPane.leftAnchor="0.0">
+                                                         <font>
+                                                            <Font size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label text="高" AnchorPane.rightAnchor="0.0">
+                                                         <font>
+                                                            <Font size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </AnchorPane>
+                                                <Slider fx:id="mouseSensitivity" blockIncrement="1.0" majorTickUnit="1.0" max="0.018" min="0.003" minorTickCount="1" prefWidth="150.0" showTickMarks="true" value="0.01" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane GridPane.rowIndex="3">
+                                       <children>
+                                          <Label layoutX="-10.0" layoutY="1.0" text="アニメーション間隔" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="0.0">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <VBox AnchorPane.rightAnchor="40.0">
+                                             <children>
+                                                <AnchorPane>
+                                                   <children>
+                                                      <Label text="遅" AnchorPane.leftAnchor="0.0">
+                                                         <font>
+                                                            <Font size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label text="速" AnchorPane.rightAnchor="0.0">
+                                                         <font>
+                                                            <Font size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </AnchorPane>
+                                                <Slider fx:id="updateTickS" majorTickUnit="200.0" max="1000.0" min="200.0" minorTickCount="100" prefWidth="150.0" showTickMarks="true" value="600.0" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </GridPane>
+                              <HBox alignment="CENTER_LEFT" spacing="5.0" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0">
+                                 <children>
+                                    <Label text="※" textFill="RED" />
+                                    <Label text="次回初期化以降に追加する粒子に反映されます">
+                                       <font>
+                                          <Font size="12.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab text="高度な設定">
+                  <content>
+                    <AnchorPane>
+                           <children>
+                              <GridPane prefHeight="150.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints prefHeight="40.0" />
+                                    <RowConstraints prefHeight="40.0" />
+                                </rowConstraints>
+                                 <children>
+                                    <AnchorPane>
+                                       <children>
+                                          <Label layoutX="-10.0" layoutY="1.0" text="軸間隔の正規化(2D)" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="0.0">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <CheckBox fx:id="normalizeAxis" mnemonicParsing="false" text="有効にする" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="0.0" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane GridPane.rowIndex="1">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT" spacing="10.0" AnchorPane.leftAnchor="40.0">
+                                             <children>
+                                                <Label text="各軸の空間メッシュ数">
+                                                   <font>
+                                                      <Font size="20.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="※" textFill="RED">
+                                                   <font>
+                                                      <Font size="12.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                          <TextField fx:id="meshN" prefWidth="50.0" promptText="20" text="20" AnchorPane.rightAnchor="140.0" />
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </GridPane>
+                              <HBox alignment="CENTER_LEFT" spacing="5.0" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0">
+                                 <children>
+                                    <Label text="※" textFill="RED" />
+                                    <Label text="次回初期化以降に追加する粒子に反映されます">
+                                       <font>
+                                          <Font size="12.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+              </tabs>
+            </TabPane>
+         </children>
+    </AnchorPane>
+  </children>
+</VBox>

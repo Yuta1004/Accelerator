@@ -7,6 +7,7 @@ import javafx.scene.chart.XYChart;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import data.Settings;
 import particle.ParticleManager;
 
 public abstract class Builder2D implements DisplayBuilder {
@@ -25,12 +26,11 @@ public abstract class Builder2D implements DisplayBuilder {
 
         hAxis = new NumberAxis();
         vAxis = new NumberAxis();
-        set2DCamera(0, 1.5, 0, 1.5);
-
         chart = new ScatterChart<Number, Number>(hAxis, vAxis);
         chart.setAnimated(false);
         chart.setLegendVisible(false);
         chart.setData(data);
+        set2DCamera(0, 1.5, 0, 1.5);
     }
 
     /**
@@ -49,6 +49,15 @@ public abstract class Builder2D implements DisplayBuilder {
      * 2Dカメラ位置をセットする (=グラフの表示範囲をセット)
      */
     public void set2DCamera(double horizontalS, double horizontalF, double verticalS, double verticalF) {
+        // 軸正規化
+        if(Settings.normalizeAxis) {
+            double waSize = ((Number)chart.getXAxis().getWidth()).doubleValue();
+            double haSize = ((Number)chart.getYAxis().getHeight()).doubleValue();
+            double aratio = haSize/waSize;
+            double baseSize = horizontalF-horizontalS;
+            verticalF = verticalS+baseSize*aratio;
+        }
+
         hAxis.setAutoRanging(false);
         hAxis.setTickUnit(0.1);
         hAxis.setLowerBound(horizontalS);
