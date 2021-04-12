@@ -75,7 +75,10 @@ public class Builder3D implements DisplayBuilder {
     public void update(ParticleManager pmanager) {
         // 直前に追加した粒子の色を落とす
         for(Sphere s : newerAddedModels) {
-            s.setOpacity(0.6);
+            PhongMaterial material = (PhongMaterial)s.getMaterial();
+            String origColor = material.getDiffuseColor().toString();
+            material.setDiffuseColor(Color.web(origColor, 0.4));
+            material.setSpecularColor(Color.web(origColor, 0.4).brighter());
         }
         newerAddedModels.clear();
 
