@@ -106,8 +106,8 @@ public class Builder3D implements DisplayBuilder {
         newerAddedModels = new ArrayList<Sphere>();
 
         // 軸モデル
-        Vector3 positions[] = {new Vector3(5.0, 0.0, 0.0), new Vector3(0.0, 5.0, 0.0), new Vector3(0.0, 0.0, 5.0)};
-        Vector3 sizes[] = {new Vector3(5.0, 0.03, 0.03), new Vector3(0.03, 5.0, 0.03), new Vector3(0.03, 0.03, 5.0)};
+        Vector3 positions[] = {new Vector3(8.0, 0.0, 0.0), new Vector3(0.0, 8.0, 0.0), new Vector3(0.0, 0.0, 8.0)};
+        Vector3 sizes[] = {new Vector3(8.0, 0.02, 0.02), new Vector3(0.02, 8.0, 0.02), new Vector3(0.02, 0.02, 8.0)};
         for(int idx = 0; idx < 3; ++ idx) {
             Sphere dot = new Sphere(0.1);
             Box axis = new Box(sizes[idx].x, sizes[idx].y, sizes[idx].z);
