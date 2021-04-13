@@ -52,6 +52,9 @@ define gen-dist
 		chmod +x dist/run.sh;\
 	fi
 
+	# LICENCEコピー
+	cp LICENCE dist/
+
 	# README生成
 	echo "# Accelerator ($1)\n\n## HowToUse\nrun the launcher(.bat, .sh)" > dist/README.md
 
