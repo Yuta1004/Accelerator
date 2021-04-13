@@ -37,18 +37,23 @@ define gen-dist
 	# ビルド
 	javac $(JAVAC_OPTS) src/Main.java
 	cp -r src/fxml .
-	cp -r src/data .
-	jar cvfm dist/Accelerator-$1.jar MANIFEST.MF -C bin . fxml data
-	rm -rf fxml data
+	jar cvfm dist/Accelerator.jar MANIFEST.MF -C bin . fxml
+	rm -rf fxml
 
 	# JRE生成
 	$(JLINK) $(JLINK_OPTS):$(JMODS_PATH) --output dist/runtime-$1
 
-	# Makefile生成
-	echo "$1:\n\tchmod +x runtime-$1/bin/*\n\truntime-$1/bin/$2 -jar Accelerator-$1.jar\n\n" > dist/Makefile
+	# Launcher生成
+	if [ $1 = "win" ]; then \
+		echo ".\\\runtime-$1\\\bin\\\java.exe -jar Accelerator.jar" > dist/run.bat && \
+		chmod +x dist/run.bat;\
+	else \
+		echo "./runtime-$1/bin/java -jar Accelerator.jar" > dist/run.sh && \
+		chmod +x dist/run.sh;\
+	fi
 
 	# README生成
-	echo "# Accelerator ($1)\n\n## HowToUse\nrun \`make\` or launcher(.app, .sh, .ps1)" > dist/README.md
+	echo "# Accelerator ($1)\n\n## HowToUse\nrun the launcher(.bat, .sh)" > dist/README.md
 
 	# .class削除
 	rm -rf bin
