@@ -93,6 +93,31 @@ public class MainUIController implements Initializable {
      * UIのセットアップを行う
      */
     private void setupUIComponets() {
+        Runnable updateCamera3D = () -> {
+            double x = cameraX.getValue();
+            double y = cameraY.getValue();
+            double z = -cameraZ.getValue();
+            double rh = cameraRH.getValue();
+            double rv = cameraRV.getValue();
+            dbuilder.set3DCamera(x, y, z, rh, rv);
+        };
+
+        Runnable updateCamera2D = () -> {
+            double verticalSVal = Util.readTextFieldAsDouble(verticalS, 0.0);
+            double verticalFVal = Util.readTextFieldAsDouble(verticalF, verticalSVal+1.0);
+            double horizontalSVal = Util.readTextFieldAsDouble(horizontalS, 0.0);
+            double horizontalFVal = Util.readTextFieldAsDouble(horizontalF, horizontalSVal+1.0);
+            dbuilder.set2DCamera(horizontalSVal, horizontalFVal, verticalSVal, verticalFVal);
+            dbuilder.update(pmanager);
+        };
+
+        Runnable stopSimulate = () -> {
+            tl.stop();
+            playBtn.setText("再生");
+            time.setText("0.00000000000");
+            timeE.setText("0.00E-11");
+        };
+
         /* コントロールパネル */
         playBtn.setOnAction(event -> {
             boolean isPlaying = playBtn.getText().equals("停止");
@@ -113,10 +138,7 @@ public class MainUIController implements Initializable {
         });
 
         initBtn.setOnAction(event -> {
-            tl.stop();
-            playBtn.setText("再生");
-            time.setText("0.0000000000");
-            timeE.setText("0.00E-11");
+            stopSimulate.run();
             addParticleBtn.setDisable(false);
             removeParticleBtn.setDisable(false);
             pmanager = new ParticleManager(Settings.DT, Settings.meshN, Settings.meshN, Settings.meshN);
@@ -125,10 +147,7 @@ public class MainUIController implements Initializable {
         });
 
         resetBtn.setOnAction(event -> {
-            tl.stop();
-            playBtn.setText("再生");
-            time.setText("0.0000000000");
-            timeE.setText("0.00E-11");
+            stopSimulate.run();
             addParticleBtn.setDisable(false);
             removeParticleBtn.setDisable(false);
             pmanager.reset();
@@ -176,28 +195,12 @@ public class MainUIController implements Initializable {
         cameraTab.getSelectionModel().select(cameraTab3D);
 
         /* 2Dカメラ(視点) */
-        Runnable updateCamera2D = () -> {
-            double verticalSVal = Util.readTextFieldAsDouble(verticalS, 0.0);
-            double verticalFVal = Util.readTextFieldAsDouble(verticalF, verticalSVal+1.0);
-            double horizontalSVal = Util.readTextFieldAsDouble(horizontalS, 0.0);
-            double horizontalFVal = Util.readTextFieldAsDouble(horizontalF, horizontalSVal+1.0);
-            dbuilder.set2DCamera(horizontalSVal, horizontalFVal, verticalSVal, verticalFVal);
-            dbuilder.update(pmanager);
-        };
         verticalS.textProperty().addListener((__, oldV, newV) -> updateCamera2D.run());
         verticalF.textProperty().addListener((__, oldV, newV) -> updateCamera2D.run());
         horizontalS.textProperty().addListener((__, oldV, newV) -> updateCamera2D.run());
         horizontalF.textProperty().addListener((__, oldV, newV) -> updateCamera2D.run());
 
         /* 3Dカメラ */
-        Runnable updateCamera3D = () -> {
-            double x = cameraX.getValue();
-            double y = cameraY.getValue();
-            double z = -cameraZ.getValue();
-            double rh = cameraRH.getValue();
-            double rv = cameraRV.getValue();
-            dbuilder.set3DCamera(x, y, z, rh, rv);
-        };
         cameraX.valueProperty().addListener((__, oldV, newV) -> updateCamera3D.run());
         cameraY.valueProperty().addListener((__, oldV, newV) -> updateCamera3D.run());
         cameraZ.valueProperty().addListener((__, oldV, newV) -> updateCamera3D.run());
@@ -215,9 +218,15 @@ public class MainUIController implements Initializable {
         });
 
         /* メニュー */
-        openCredit.setOnAction(event -> genStage("Credit", "/fxml/Credit.fxml", null).showAndWait());
+
+        openCredit.setOnAction(event -> {
+            stopSimulate.run();
+            genStage("Credit", "/fxml/Credit.fxml", null).showAndWait();
+        });
 
         openSettings.setOnAction(event -> {
+            stopSimulate.run();
+            pmanager.reset();
             genStage("Settings", "/fxml/Settings.fxml", new SettingsUIController()).showAndWait();
             initTimeline(Settings.updateTickS);
             verticalS.setDisable(Settings.normalizeAxis);
@@ -229,6 +238,8 @@ public class MainUIController implements Initializable {
         });
 
         view3D.setOnAction(event -> {
+            stopSimulate.run();
+            pmanager.reset();
             changeDBuilder(new Builder3D());
             dbuilder.update(pmanager);
             updateCamera3D.run();
@@ -236,18 +247,24 @@ public class MainUIController implements Initializable {
         });
 
         view2DXY.setOnAction(event -> {
+            stopSimulate.run();
+            pmanager.reset();
             changeDBuilder(new Builder2DXY());
             updateCamera2D.run();
             cameraTab.getSelectionModel().select(cameraTab2D);
         });
 
         view2DYZ.setOnAction(event -> {
+            stopSimulate.run();
+            pmanager.reset();
             changeDBuilder(new Builder2DYZ());
             updateCamera2D.run();
             cameraTab.getSelectionModel().select(cameraTab2D);
         });
 
         view2DZX.setOnAction(event -> {
+            stopSimulate.run();
+            pmanager.reset();
             changeDBuilder(new Builder2DZX());
             updateCamera2D.run();
             cameraTab.getSelectionModel().select(cameraTab2D);
