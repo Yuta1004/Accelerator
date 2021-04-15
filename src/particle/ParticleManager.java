@@ -141,6 +141,7 @@ public class ParticleManager {
      * 管理する全ての粒子の状態を初期状態に戻す
      */
     public void reset() {
+        updateCnt = 0;
         for(int id : particles.keySet()) {
             Vector3 pos = initialPositions.get(id);
             Vector3 velocity = initialVelocities.get(id);
